@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Tebakan Kuy!</title>
+    <style>
+        *,
+        html {
+            font-family: 'Poppins', sans-serif;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background-color: rgb(231, 255, 254);
+        }
+
+        header {
+            text-align: center;
+            margin-top: 10vh;
+        }
+
+        main {
+            /* background-color: purple; */
+            text-align: center;
+            margin-top: 10vh;
+
+        }
+
+        .container {
+            background-color: rgb(183, 223, 223);
+            border-radius: 30px;
+            max-width: 700px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 50px;
+            gap: 20px;
+        }
+
+        #answer {
+            transition: color 0.3s ease-in-out;
+            background-color: white;
+            border-radius: 10px;
+            border: 2px dashed rosybrown;
+            height: 30px;
+            width: 100px;
+            text-align: center;
+            /* padding-left: 10px; */
+        }
+
+        #answer:focus {
+            border-style: none;
+            background-color: rgb(230, 253, 253);
+            border: burlywood;
+            border-radius: 10px;
+            border: 2px solid cyan;
+            height: 30px;
+            width: 100px;
+        }
+
+        form>input[type=submit] {
+            background-color: rosybrown;
+            border-radius: 10px;
+            border-color: rosybrown;
+            height: 30px;
+            width: 50px;
+            color: whitesmoke;
+            cursor: pointer;
+        }
+
+        .jawaban {
+            margin-top: 30px;
+        }
+
+        #main-lagi {
+            background-color: rosybrown;
+            border-radius: 10px;
+            border-color: rosybrown;
+            height: 30px;
+            width: 70px;
+            color: whitesmoke;
+            cursor: pointer;
+        }
+
+        @media screen and (max-width:860) {
+            .container>h2 {
+                font-size: 12px;
+            }
+
+        }
+    </style>
+</head>
+<!-- preventDefault ntar pake ini ga si(?) -->
+
+<body>
+    <header>
+        <h1>Tebakan Kuy!</h1>
+    </header>
+    <main>
+        <div class="container">
+            <h2>Pilih satu angka dari 1 - 5</h2>
+            <form>
+                <input id="answer" type="text" autocomplete="off" placeholder="Tebak di sini!">
+                <br>
+                <br>
+                <input id="submit" type="submit" onclick=onSubmit(event)>
+                <br>
+                <br>
+                <div id="replay"></div>
+            </form>
+        </div>
+        <br>
+        <br>
+        <h2 id="result"></h2>
+    </main>
+    <script>
+        const random = Math.ceil(Math.random() * 5)
+        let answer = document.getElementById('answer')
+        let result = document.getElementById('result')
+        const replay = document.getElementById('replay')
+
+
+        function onSubmit(event) {
+            event.preventDefault()
+
+            if (parseInt(answer.value) === random) {
+                result.innerHTML = "Jawaban anda BENARR!"
+            }
+            else {
+                result.innerHTML = `Salah blough!\njawabannya: ${random}`
+            }
+
+            console.log(answer.value)
+            replay.innerHTML = "<button id='main-lagi' >Main lagi</button>"
+
+            // console.log("tombol diklik!")
+        }
+
+    </script>
+</body>
+
+</html>
